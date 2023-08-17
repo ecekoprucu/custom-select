@@ -14,9 +14,9 @@ export const Bottom = ({options, searchText, setTags}: Props) => {
     return (
         <S.Container>
             {searchText.length === 0 ? options.map((option, index) => (
-                <Option value={option.value} text={option.text} key={index} />
-            )) : options.filter(option => option.text.includes(searchText)).map((option, index) => (
-                <Option value={option.value} text={option.text} key={index} />
+                <Option onSelect={setTags} value={option.value} text={option.text} key={index} />
+            )) : options.filter(option => (option.text).toLowerCase().includes(searchText.toLowerCase())).map((option, index) => (
+                <Option onSelect={setTags} value={option.value} text={option.text} key={index} />
             ))}
         </S.Container>
     );

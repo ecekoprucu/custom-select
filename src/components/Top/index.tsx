@@ -27,7 +27,7 @@ export const Top = ({tags, searchText, setSearchText, setShowOptions, setTags}: 
         <S.Container>
            {tags.length > 0 && <S.TagArea>
                 {tags.map((tag, index) => (
-                    <Tag key={index} tagName={tag} />
+                    <Tag key={index} tagName={tag} setTags={setTags}/>
                 ))}
             </S.TagArea>}
             <S.SearchArea>

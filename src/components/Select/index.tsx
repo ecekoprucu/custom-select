@@ -20,7 +20,7 @@ export const Select = ({preTags, options}: Props) => {
     return (
         <div>
             <Top tags={tags} setTags={setTags} setShowOptions={setShowOptions} searchText={searchText} setSearchText={setSearchText}/>
-            {!!showOptions && <Bottom options={options} searchText={searchText} setTags={setTags}/>}
+            {(!!showOptions || searchText.length > 0) && <Bottom options={options} searchText={searchText} setTags={setTags}/>}
         </div>
     );
 };

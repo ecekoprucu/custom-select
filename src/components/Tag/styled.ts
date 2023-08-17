@@ -8,6 +8,7 @@ export const TagWrapper = styled.div`
     padding: 3px;
     margin: 1.5px;
     border-radius: 5px;
+    min-width: fit-content;
 `;
 
 export const TagText = styled.p`
@@ -16,6 +17,7 @@ export const TagText = styled.p`
     color: black;
     font-size: 9px;
     font-weight: 500;
+    text-overflow: ellipsis;
 `;
 
 export const TagClose = styled.button`

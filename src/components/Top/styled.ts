@@ -13,7 +13,7 @@ export const Container = styled.div`
 `
 
 export const TagArea = styled.div`
-    flex: 3;
+    width: fit-content;
     display: flex;
     max-width: 50%;
     overflow-x: auto;
@@ -28,7 +28,7 @@ export const TagArea = styled.div`
 `
 
 export const SearchArea = styled.div`
-    flex: 1;
+    flex: 2;
     align-items: center;
     display: flex;
 `
@@ -37,6 +37,7 @@ export const Input = styled.input`
     padding: 0;
     border: none;
     outline: none;
+    width: 100%;
 `
 
 export const ClearButton = styled.button`
