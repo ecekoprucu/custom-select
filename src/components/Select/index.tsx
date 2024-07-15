@@ -9,10 +9,11 @@ export type Option = {
 
 type Props = {
     preTags?: string[];
+    singleSelect?: boolean;
     options: Option[];
 }
 
-export const Select = ({preTags, options}: Props) => {
+export const Select = ({preTags, options, singleSelect}: Props) => {
     const [tags, setTags] = useState(preTags ?? []);
     const [searchText, setSearchText] = useState('');
     const [showOptions, setShowOptions] = useState<any>(false);
@@ -22,7 +23,7 @@ export const Select = ({preTags, options}: Props) => {
             width: 350
         }}>
             <Top showOptions={showOptions} tags={tags} setTags={setTags} setShowOptions={setShowOptions} searchText={searchText} setSearchText={setSearchText}/>
-            {!!showOptions && <Bottom options={options} searchText={searchText} setTags={setTags}/>}
+            {!!showOptions && <Bottom options={options} singleSelect={singleSelect} searchText={searchText} setTags={setTags}/>}
         </div>
     );
 };
