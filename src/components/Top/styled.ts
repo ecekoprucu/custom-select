@@ -15,10 +15,10 @@ export const Container = styled.div`
 export const TagArea = styled.div`
     width: fit-content;
     display: flex;
+    flex-wrap: wrap;
     max-width: 50%;
     overflow-x: auto;
     scrollbar-width: none;
-    -ms-overflow-style: none;
     &::-webkit-scrollbar {
         width: 0;
         height: 0;

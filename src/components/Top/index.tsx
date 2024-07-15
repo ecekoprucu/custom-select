@@ -1,27 +1,38 @@
-import React from "react";
+import React, { useCallback } from "react";
 import * as S from "./styled";
 import { Tag } from "../Tag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretDown, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faCaretDown, faCaretUp, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 type Props = {
     tags: string[];
     searchText: string;
     setSearchText: (text: string) => void;
-    setShowOptions: (show: any) => void;
+    showOptions: boolean;
+    setShowOptions: (show: boolean) => void;
     setTags: (tags: string[]) => void;
 }
 
-export const Top = ({tags, searchText, setSearchText, setShowOptions, setTags}: Props) => {
+export const Top = ({tags, searchText, setSearchText, showOptions, setShowOptions, setTags}: Props) => {
 
-    const handleClear = () => {
+    const handleClear = useCallback(() => {
         if(tags.length > 0 || searchText.length > 0) {
             setSearchText('');
             setTags([]);
-        } else {
-            setShowOptions((currentShow: boolean) => !currentShow);
+            setShowOptions(false);
         }
-    }
+    }, [tags, searchText, setSearchText, setTags, setShowOptions]);
+    const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchText(e.target.value)
+        if(e.target.value.length > 0) {
+            setShowOptions(true);
+        } else {
+            setShowOptions(false);
+        }
+        }, [setSearchText, setShowOptions]);
+    const handleToggle = useCallback( () => {
+        setShowOptions(!showOptions);
+    }, [showOptions, setShowOptions]);
 
     return (
         <S.Container>
@@ -31,10 +42,13 @@ export const Top = ({tags, searchText, setSearchText, setShowOptions, setTags}: 
                 ))}
             </S.TagArea>}
             <S.SearchArea>
-                <S.Input type='text' onChange={(e) => setSearchText(e.target.value)} value={searchText}/>
+                <S.Input type='text' onChange={handleInputChange} value={searchText}/>
             </S.SearchArea>
-            <S.ClearButton onClick={handleClear}>
-                <FontAwesomeIcon icon={ (tags.length > 0) || (searchText.length > 0) ? faXmark : faCaretDown} />
+           {(searchText.length > 0 || tags.length > 0) && <S.ClearButton onClick={handleClear}>
+                <FontAwesomeIcon icon={faXmark} />
+            </S.ClearButton>}
+            <S.ClearButton onClick={handleToggle}>
+                <FontAwesomeIcon icon={showOptions ? faCaretUp :faCaretDown} />
             </S.ClearButton>
         </S.Container>
     );
