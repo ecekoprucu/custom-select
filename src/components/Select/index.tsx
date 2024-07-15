@@ -8,12 +8,12 @@ export type Option = {
 }
 
 type Props = {
-    preTags: string[];
+    preTags?: string[];
     options: Option[];
 }
 
 export const Select = ({preTags, options}: Props) => {
-    const [tags, setTags] = useState(preTags);
+    const [tags, setTags] = useState(preTags ?? []);
     const [searchText, setSearchText] = useState('');
     const [showOptions, setShowOptions] = useState<any>(false);
 
